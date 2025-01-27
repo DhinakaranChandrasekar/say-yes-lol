@@ -56,7 +56,7 @@
 
     #no-button {
       background: #dc3545;
-      position: relative;
+      position: absolute;
       transition: transform 0.5s ease, left 0.5s ease, top 0.5s ease;
     }
 
@@ -72,17 +72,17 @@
 
   <div class="button-container">
     <button id="yes-button" onclick="yesClicked()">Yes</button>
-    <button id="no-button" onmouseover="moveNoButton()">No</button>
+    <button id="no-button">No</button>
   </div>
 
   <script>
     const noButton = document.getElementById('no-button');
     const positions = [
-      {  top: "180px" },
-      {  top: "50px" },
-      { top: "140px" },
-      {  top: "45px" },
-      {  top: "100px" },
+      { left: "50px", top: "180px" },
+      { left: "80%", top: "50px" },
+      { left: "30%", top: "140px" },
+      { left: "70%", top: "45px" },
+      { left: "40%", top: "100px" },
     ];
     let currentPositionIndex = 0;
 
@@ -92,6 +92,10 @@
       noButton.style.top = position.top;
       currentPositionIndex = (currentPositionIndex + 1) % positions.length;
     }
+
+    // Add both hover and touch event listeners
+    noButton.addEventListener("mouseover", moveNoButton);
+    noButton.addEventListener("touchstart", moveNoButton);
 
     function yesClicked() {
       window.location.href = 'haha.html';
